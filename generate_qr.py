@@ -4,7 +4,7 @@ import uuid
 import os
 import re
 
-RENDER_URL = ""
+RENDER_URL = "https://brims-wedding-1.onrender.com"
 
 # Create folder for QR codes 
 os.makedirs("qr_codes", exist_ok=True)
