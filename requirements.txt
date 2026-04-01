@@ -5,3 +5,4 @@ pillow
 gunicorn
 pyzbar
 psycopg2-binary
+psycopg2
