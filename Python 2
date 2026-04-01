@@ -1,0 +1,19 @@
+# Generate QR code for a guest
+def generate_qr(guest):
+    qr_dir = 'static/qr_codes'
+    if not os.path.exists(qr_dir):
+        os.makedirs(qr_dir)
+    url = f"http://127.0.0.1:5000/checkin_page?id={guest.id}"
+    img = qrcode.make(url)
+    filename = os.path.join(qr_dir, f"{guest.name}_QR.png")
+    img.save(filename)
+    return filename
+
+# Example: Add a guest and generate QR
+@app.route('/add_guest/<name>')
+def add_guest(name):
+    new_guest = Guest(name=name)
+    db.session.add(new_guest)
+    db.session.commit()
+    qr_file = generate_qr(new_guest)
+    return f"Guest added: {name}, QR code saved at {qr_file}"

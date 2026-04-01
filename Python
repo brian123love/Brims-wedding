@@ -1,0 +1,19 @@
+from flask import Flask, render_template, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+import qrcode
+import os
+
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///guests.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+# Guest Table
+class Guest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    status = db.Column(db.String(20), default='Pending')
+    checkin_time = db.Column(db.DateTime, nullable=True)
+
+db.create_all()

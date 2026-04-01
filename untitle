@@ -1,0 +1,27 @@
+import pandas as pd
+import qrcode
+from pyzbar.pyzbar import decode
+from PIL import Image
+
+Load guests list with unique IDs
+guests = pd.read_csv("guests_with_ids.csv")
+
+Soma QR image kutoka kwa file (mfano: Ana_Said.png)
+img = Image.open("qr_codes/Ana_Said.png")  # Badilisha jina la file hapa
+result = decode(img)
+
+if result:
+    scanned_data = result[0].data.decode("utf-8")
+    scanned_id = scanned_data.split("ID: ")[-1].strip()
+
+    # Angalia kama ID ipo kwenye list
+    match = guests[guests['unique_id'] == scanned_id]
+    if not match.empty:
+        name = match.iloc[0]['name']
+        print(f"✅ {name} ameruhusiwa kuingia.")
+    else:
+        print("❌ Mgeni huyu hayupo kwenye list.")
+else:
+    print("⚠️ QR code haijasomeka.")
+```
+

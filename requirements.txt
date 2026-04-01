@@ -1,0 +1,7 @@
+flask
+pandas
+qrcode
+pillow
+gunicorn
+pyzbar
+psycopg2-binary
