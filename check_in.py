@@ -7,7 +7,7 @@ from PIL import Image
 guests = pd.read_csv("guests_with_ids.csv")
 
 #Load the QR image to scan (example: Ana_Said.png)
-img = Image.open("qr_codes/Colin_Amani.png")  #change to the actual filename you want to scan result=decode(img)
+img = Image.open("qr_codes/Mary_Kilawe.png")  #change to the actual filename you want to scan result=decode(img)
 result = decode(img)
 
 if result:
